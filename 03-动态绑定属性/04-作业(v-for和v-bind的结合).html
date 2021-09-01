@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .active{
+      color:red
+    }
+  </style>
+</head>
+<body>
+<!--作业需求: 点击列表中的哪一项, 那么该项的文字变成红色-->
+<div id="app">
+  <ul>
+    <li v-on:click="btnClick(index)" v-for="(m,index) in movies" :class="{active: index==mark}">{{index}}-{{m}}</li>
+  </ul>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<script>
+  const app = new Vue({
+    el: '#app',
+    data: {
+      mark : -1,
+      message:'你好啊',
+      movies: ['海王', '海尔兄弟', '火影忍者', '进击的巨人'],
+      isActive: [false,false,false,false]
+    },
+    methods: {
+      btnClick: function (index) {
+        if(index == this.mark){
+          this.mark = -1 // if判断，实现点击一项时变色，再次点击，取消变色
+        }else{
+          this.mark = index
+        }
+      }
+    }
+  })
+</script>
+</body>
+</html>
