@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title></title>
+</head>
+<body>
+<div id='app'>
+	<h2>{{message}}</h2>
+	<parent-Cpn></parent-Cpn>
+	<!-- <chil-cpn></chil-cpn> -->
+</div>
+<template id='parentCpn'>
+	<div>111</div>
+	<child-cpn1></child-cpn1>
+</template>
+<template id='childcpn1'>
+	<h2>我是子组件1</h2>
+</template>
+<template  id='childcpn1'>
+	<h2>我是子组件2</h2>
+</template>
+<script src='../js/vue.js'></script>
+<script>
+	const app = new Vue({
+		el: '#app',
+		data: {
+			 message:'你好啊',
+		},
+
+		components:{
+			'parent-cpn':{
+				template:'#parentCpn',
+				data(){
+					return {
+						
+					}
+				},
+				components:{
+					'child-cpn1':{
+						template:'#childcpn1'
+					},
+					'child-cpn2':{
+						template:'#childcpn2'
+					}
+				}
+			}
+		}
+	})
+</script>
+</body>
+</html>

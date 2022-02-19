@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title></title>
+</head>
+<body>
+	<div id='app'>
+		<chil-cpn @increment='changeTotal' @decrement='changeTotal'></chil-cpn>
+		<h2>点击次数:{{total}}</h2>
+	</div>
+	<template id='chilCpn'>
+		<div>
+			<button @click="increment">+1</button>
+			<button @click="decrement">-1</button>
+		</div>
+	</template>
+	<script src='../js/vue.js'></script>
+	<script>
+		let app = new Vue({
+			el: '#app',
+			data: {
+				 total:0
+			},
+			methods:{
+				changeTotal(counter){
+					this.total = counter 
+				}
+			},
+			components:{
+				'chil-cpn':{
+					template:'#chilCpn',
+					data(){
+						return {
+							counter : 0
+						};
+					},
+					methods:{
+						increment(){
+							this.counter++;
+							this.$emit('increment',this.counter);
+						},
+						decrement(){
+							this.counter--;
+							this.$emit('decrement',this.counter);
+						}
+					}
+				}
+			},
+			
+			
+		})
+	</script>
+</body>
+</html>
